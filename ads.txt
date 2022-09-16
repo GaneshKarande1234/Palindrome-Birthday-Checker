@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Birthday Palindrome</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+
+  <body>
+    <div id="page-wrapper">
+      <header class="hero">
+        <nav class="navbar">
+          <ul>
+            <li><a href="https://bharati-portfolio.netlify.app/" class="navlink" target="_blank">BHARATI</a></li>
+            <li><a href="https://github.com/bharati-21/birthday-palindrome" class="navlink" target="_blank">GITHUB REPO</a></li>
+          </ul>
+        </nav>
+        <div class="showcase-container">
+          <div class="showcase-text">
+            <h1 class="hero-head">
+              Check out if your <span class="color-primary transform-upper">Birthdate</span> is
+              a
+              <span class="color-primary transform-upper">Palindrome</span>
+            </h1>
+            <p class="hero-lead"><span class="color-primary">Palindrome</span> is a word/ phrase/ sequence that reads the same backwards as forwards.
+            </p>
+            <a href="#section-header" class="link link-secondary try-feat">Try it out!</a>
+          </div>
+          <div class="showcase-image">
+            <img
+              src="https://images.unsplash.com/photo-1535981767287-35259dbf7d0e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=975&q=80"
+              alt="" class="showcase-img"
+						/>
+          </div>
+        </div>
+      </header>
+      <main class="main" id="main">
+        <div id="main-wrapper" class="container">
+          <section class="check-header" id="section-header">
+            <h2 class="section-head">Enter your <span class="color-primary">Birthdate</span> to know if it is a <span class="color-primary">Palindrome</span></h2>
+            <p class="section-lead">Your birthdate is checked in 4 formats: <em>mm-dd-yyyy</em>, <em>dd-mm-yyyy</em>, <em>mm-dd-yy</em>, and <em>yyyy-mm-dd</em></p>
+
+            <p class="section-sub-lead">E.g. If your birthdate is <strong>21<sup>st</sup> July 1999</strong>, then the app will check for: <br/> <em>07211999</em>, <em>21071999</em>, <em>072199</em>, <em>19990721</em></p>
+          </section>
+          <section class="check-input">
+            <input type="date" name="birthdate" id="birthdate" class="birthdate" required>
+            <button class="btn-check">Check</button>
+          </section>
+          <section class="check-output display-none">
+            <div class="message display-none"></div>
+            <div class="loading display-none">
+              <!-- <img src="https://media.giphy.com/media/APqEbxBsVlkWSuFpth/giphy.gif" alt="loading" class="loading-img"> -->
+              <img src="https://media.giphy.com/media/wZRY4moZkStDthIk2e/giphy.gif" alt="loading" class="loading-img">
+            </div>
+          </section>
+        </div>
+        
+      </main>
+      <footer class="footer">
+        <div id="footer-wrapper" class="container">
+          <p>Made with ❤ by Bharati</p>
+          <ul class="social-links">
+            <li>
+              <a href="https://github.com/bharati-21/" target="_blank">GitHub</a>
+            </li>
+            <li>
+              <a href="https://twitter.com/_girlwhocodes" target="_blank">Twitter</a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/bharati-subramanian-29734b152/" target="_blank">LinkedIn</a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <script src="src/index.js"></script>
+  </body>
+</html>
