@@ -1,81 +1,163 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Birthday Palindrome</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+function dateReverse(date) {
+  var dateSplit = date.split("");
+  var dateReverse = dateSplit.reverse();
+  var dataJoin = dateReverse.join("");
+  console.log(dataJoin);
+  return dataJoin;
+}
+function checkPalindrome(date) {
+  var orgDate = date;
+  var palinDate = dateReverse(date);
+  return orgDate === palinDate;
+}
+// var date={
+//     day:20,
+//     month:2,
+//     year:2020
+// }
+function dateToString(date) {
+  console.log(date);
 
-    <link rel="stylesheet" href="./src/styles.css" />
-  </head>
+  var dateString = { day: "", month: "", year: "" };
+  if (date.day < 10) {
+    dateString.day = "0" + date.day;
+  } else {
+    dateString.day = date.day.toString();
+  }
+  if (date.month < 10) {
+    dateString.month = "0" + date.month;
+  } else {
+    dateString.month = date.month.toString();
+  }
+  dateString.year = date.year.toString();
+  return dateString;
+}
 
-  <body>
-    <div id="page-wrapper">
-      <header class="hero">
-        <nav class="navbar">
-          <ul>
-            <li><a href="https://bharati-portfolio.netlify.app/" class="navlink" target="_blank">BHARATI</a></li>
-            <li><a href="https://github.com/bharati-21/birthday-palindrome" class="navlink" target="_blank">GITHUB REPO</a></li>
-          </ul>
-        </nav>
-        <div class="showcase-container">
-          <div class="showcase-text">
-            <h1 class="hero-head">
-              Check out if your <span class="color-primary transform-upper">Birthdate</span> is
-              a
-              <span class="color-primary transform-upper">Palindrome</span>
-            </h1>
-            <p class="hero-lead"><span class="color-primary">Palindrome</span> is a word/ phrase/ sequence that reads the same backwards as forwards.
-            </p>
-            <a href="#section-header" class="link link-secondary try-feat">Try it out!</a>
-          </div>
-          <div class="showcase-image">
-            <img
-              src="https://images.unsplash.com/photo-1535981767287-35259dbf7d0e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=975&q=80"
-              alt="" class="showcase-img"
-						/>
-          </div>
-        </div>
-      </header>
-      <main class="main" id="main">
-        <div id="main-wrapper" class="container">
-          <section class="check-header" id="section-header">
-            <h2 class="section-head">Enter your <span class="color-primary">Birthdate</span> to know if it is a <span class="color-primary">Palindrome</span></h2>
-            <p class="section-lead">Your birthdate is checked in 4 formats: <em>mm-dd-yyyy</em>, <em>dd-mm-yyyy</em>, <em>mm-dd-yy</em>, and <em>yyyy-mm-dd</em></p>
+function dateCombinatios(date) {
+  var ddmmyyyy = date.day + date.month + date.year;
+  var mmddyyyy = date.month + date.day + date.year;
+  var yyyymmdd = date.year + date.month + date.day;
+  var ddmmyy = date.day + date.month + date.year.slice(-2);
+  var mmddyy = date.month + date.day + date.year.slice(-2);
+  var yyddmm = date.year.slice(-2) + date.day + date.month;
 
-            <p class="section-sub-lead">E.g. If your birthdate is <strong>21<sup>st</sup> July 1999</strong>, then the app will check for: <br/> <em>07211999</em>, <em>21071999</em>, <em>072199</em>, <em>19990721</em></p>
-          </section>
-          <section class="check-input">
-            <input type="date" name="birthdate" id="birthdate" class="birthdate" required>
-            <button class="btn-check">Check</button>
-          </section>
-          <section class="check-output display-none">
-            <div class="message display-none"></div>
-            <div class="loading display-none">
-              <!-- <img src="https://media.giphy.com/media/APqEbxBsVlkWSuFpth/giphy.gif" alt="loading" class="loading-img"> -->
-              <img src="https://media.giphy.com/media/wZRY4moZkStDthIk2e/giphy.gif" alt="loading" class="loading-img">
-            </div>
-          </section>
-        </div>
-        
-      </main>
-      <footer class="footer">
-        <div id="footer-wrapper" class="container">
-          <p>Made with ❤ by Bharati</p>
-          <ul class="social-links">
-            <li>
-              <a href="https://github.com/bharati-21/" target="_blank">GitHub</a>
-            </li>
-            <li>
-              <a href="https://twitter.com/_girlwhocodes" target="_blank">Twitter</a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/bharati-subramanian-29734b152/" target="_blank">LinkedIn</a>
-            </li>
-          </ul>
-        </div>
-      </footer>
-    </div>
+  return [ddmmyyyy, mmddyyyy, yyyymmdd, ddmmyy, mmddyy, yyddmm];
+}
+function palindromeCheckDateCombos(date) {
+  var comboDate = dateCombinatios(date);
+  var listOfDate = [];
+  for (var i = 0; i < comboDate.length; i++) {
+    var result = checkPalindrome(comboDate[i]);
+    listOfDate.push(result);
+  }
+  return listOfDate;
+}
+function isLeapYear(year) {
+  if (year % 400 === 0) {
+    return true;
+  }
+  if (year % 4) {
+    return true;
+  }
+  if (year % 100 === 0) {
+    return false;
+  }
+  return false;
+}
+function getNextDate(date) {
+  var day1 = date.day + 1;
+  var month1 = date.month;
+  var year1 = date.year;
+  var daysInList = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-    <script src="src/index.js"></script>
-  </body>
-</html>
+  if (month1 === 2) {
+    if (isLeapYear(year1)) {
+      if (day1 > 29) {
+        day1 = 1;
+        month1 = 3;
+      }
+    } else {
+      if (day1 > 28) {
+        day1 = 1;
+        month1 = 3;
+      }
+    }
+  } else {
+    if (day1 > daysInList[month1 - 1]) {
+      day1 = 1;
+      month1++;
+    }
+  }
+  if (month1 > 12) {
+    month1 = 1;
+    year1++;
+  }
+  console.log(day1 + " " + month1 + " " + year1);
+  return { day: day1, month: month1, year: year1 };
+}
+
+
+function getNextPalindromeDate(date) {
+  var nextDate = getNextDate(date);
+  var ctr = 0;
+
+  while (1) {
+    ctr++;
+    var dateStr = dateToString(nextDate);
+    var resultList = palindromeCheckDateCombos(dateStr);
+
+    for (let i = 0; i < resultList.length; i++) {
+      if (resultList[i]) {
+        return [ctr, nextDate];
+      }
+    }
+    nextDate = getNextDate(nextDate);
+  }
+}
+
+var birthdayInput = document.querySelector("#date1");
+var btn1 = document.querySelector("#btn");
+var msg = document.querySelector("#msg");
+
+function handler() {
+  console.log("runnin");
+  var inputDate = birthdayInput.value;
+  console.log(inputDate);
+  if (inputDate !== "") {
+    var dateSp = inputDate.split("-");
+    var dd = dateSp[2];
+    var mm = dateSp[1];
+    var yy = dateSp[0];
+    var date = {
+      day: Number(dd),
+      month: Number(mm),
+      year: Number(yy),
+    };
+    var dataString = dateToString(date);
+    var isPalinrome = palindromeCheckDateCombos(dataString);
+    console.log(isPalinrome);
+    var flag = false;
+    for (var i = 0; i < isPalinrome.length; i++) {
+      if (isPalinrome[i]) {
+        flag = true;
+        break;
+      }
+    }
+    if (!flag) {
+      var [counter, date1] = getNextPalindromeDate(date);
+
+      msg.innerText =
+
+        "Your Birthday is not palindrome😢😢😢" + ", " + "Next palindrome date is " + date1.day + "-" + date1.month + "-" + date1.year + ", " + "Remainig No.of days for next date is " + counter;
+    } else {
+      msg.innerText = "your birthday is palindrome 🥳 🥳 ";
+      console.log("your birthday is palindrome");
+    }
+  }
+  else {
+    msg.innerText = "Please enter birthdate and check"
+  }
+
+  // console.log(date)
+}
+btn1.addEventListener("click", handler);
